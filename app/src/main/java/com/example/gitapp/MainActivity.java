@@ -2,11 +2,8 @@ package com.example.gitapp;
 
 import android.os.Bundle;
 
-import androidx.activity.EdgeToEdge;
+
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 //add
 
@@ -73,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 try {
-                    URL url = new URL("http://10.0.2.2:4567/repos?username=" + username);  // Android 模拟器上访问 localhost 使用 10.0.2.2
+                    URL url = new URL("https://api.github.com/users/" + username + "/repos");  // Android 模拟器上访问
                     HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                     connection.setRequestMethod("GET");
 
@@ -88,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
                         in.close();
 
                         // 解析 JSON 数据并更新 RecyclerView
-                        final List<Rep> repos = parseReposFromJson(response.toString());
+                         final List<Rep> repos = parseReposFromJson(response.toString());
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -129,7 +126,8 @@ public class MainActivity extends AppCompatActivity {
             JSONObject repoJson = jsonArray.getJSONObject(i);
             String name = repoJson.getString("name");
             String description = repoJson.optString("description", "No description");
-            int stars = repoJson.getInt("stars");
+            // 确保使用 stargazers_count
+            int stars = repoJson.getInt("stargazers_count");
             repos.add(new Rep(name, description, stars));
         }
         return repos;

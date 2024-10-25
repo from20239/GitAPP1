@@ -9,11 +9,12 @@
 
     <!-- input -->
 
+    <!-- RecyclerView 用于显示搜索结果 -->
     <EditText
         android:id="@+id/inputText"
         android:layout_width="406dp"
         android:layout_height="79dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="50dp"
         android:hint="Please write username here"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,22 +26,24 @@
         android:id="@+id/Search"
         android:layout_width="118dp"
         android:layout_height="68dp"
+        android:layout_marginTop="20dp"
         android:text="Search"
-        tools:ignore="DuplicateClickableBoundsCheck,MissingConstraints"
-        tools:layout_editor_absoluteX="146dp"
-        tools:layout_editor_absoluteY="115dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputText"
+        tools:ignore="DuplicateClickableBoundsCheck,MissingConstraints" />
 
-    <!-- RecyclerView 用于显示搜索结果 -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="90dp"
         android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Search"
+        app:layout_constraintTop_toBottomOf="@+id/inputText"
         app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
